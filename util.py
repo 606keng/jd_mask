@@ -1,6 +1,8 @@
 import json
 import random
 import requests
+from selenium import webdriver
+
 from config import global_config
 from lxml import etree
 
@@ -95,13 +97,17 @@ def get_session():
 
 def get_sku_title():
     """获取商品名称"""
-    url = 'https://item.jd.com/{}.html'.format(global_config.getRaw('config','sku_id'))
-    session = get_session()
-    resp = session.get(url).content
-    x_data = etree.HTML(resp)
-    sku_title = x_data.xpath('/html/head/title/text()')
-    return sku_title[0]
 
+    """获取商品名称"""
+    url = 'https://item.jd.com/{}.html'.format(global_config.getRaw('config', 'sku_id'))
+    driver = webdriver.Chrome()
+    driver.get(url)
+    title = driver.title
+    driver.quit()
+
+    # sku_title = x_data.xpath('/html/head/title/text()')
+    # print(sku_title)
+    return title
 def send_wechat(message):
     """推送信息到微信"""
     url = 'http://sc.ftqq.com/{}.send'.format(global_config.getRaw('messenger', 'sckey'))

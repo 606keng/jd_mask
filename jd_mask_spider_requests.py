@@ -19,7 +19,7 @@ class Jd_Mask_Spider(object):
         self.default_user_agent = global_config.getRaw('config', 'DEFAULT_USER_AGENT')
 
     def login(self):
-        for flag in range(1, 3):
+        for flag in range(1, 2):
             try:
                 targetURL = 'https://order.jd.com/center/list.action'
                 payload = {

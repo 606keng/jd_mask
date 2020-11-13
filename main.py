@@ -11,7 +11,6 @@ if __name__ == '__main__':
  /_____|/_/ \_\____/ 2.秒杀抢购商品 
     """
     start_tool = Jd_Mask_Spider()
-    print(a)
     choice_function = input('选择功能:')
     if choice_function == '1':
         start_tool.login()
